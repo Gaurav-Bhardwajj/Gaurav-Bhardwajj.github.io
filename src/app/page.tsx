@@ -1,103 +1,139 @@
-import Image from "next/image";
+"use client";
+import ParticleNetwork from './ParticleNetwork';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="relative min-h-screen w-full bg-black p-0 flex flex-col items-center overflow-hidden">
+      <ParticleNetwork />
+      <div className="relative z-10 w-full flex flex-col items-center p-6 sm:p-12">
+        <header className="w-full max-w-3xl mx-auto text-center mb-8">
+          <h1 className="text-5xl sm:text-6xl font-extrabold mb-2 tracking-tight bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow-lg">
+            Gaurav Bhardwaj
+          </h1>
+          <p className="text-xl sm:text-2xl font-semibold mb-2 text-fuchsia-300 drop-shadow">
+            B. Tech. Computer Science (Data Science) @ The Northcap University
+          </p>
+          <p className="text-md text-cyan-200">
+            Gurugram •{' '}
+            <a
+              href="mailto:gaurav26bhardwaj62@gmail.com"
+              className="underline hover:text-yellow-400"
+            >
+              gauravvbhardwaj1@gmail.com
+            </a>{' '}
+            •{' '}
+            <a
+              href="https://www.linkedin.com/in/gauravvbhardwaj1/"
+              className="underline hover:text-fuchsia-400"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+          </p>
+        </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <section className="w-full max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-fuchsia-500 to-cyan-400 text-transparent bg-clip-text drop-shadow">
+            About Me
+          </h2>
+          <p className="text-lg leading-relaxed bg-black/80 text-cyan-100 rounded-lg shadow p-6">
+            Hi, I’m <span className="text-fuchsia-400 font-bold">Gaurav Bhardwaj</span> — part data whisperer, part code ninja, and full-time enthusiast of all things tech.<br /><br />
+            I’m currently wrapping up my B.Tech in Computer Science with a specialization in Data Science at The NorthCap University. But honestly? I’ve spent just as much time outside the classroom playing with data, building things that (hopefully) make life a little smarter.<br /><br />
+            I’ve trained machines to detect hate speech, designed a credit card system that practically runs itself, and built dashboards that make GDP stats look like a Netflix binge. Oh, and I once helped a company save money just by being friends with numbers. (Okay, I was a Data Analyst Intern, but you get the idea.)<br /><br />
+            I speak fluent <span className="text-yellow-300 font-semibold">Python</span>, write heartfelt <span className="text-cyan-300 font-semibold">SQL</span> queries, and occasionally flirt with <span className="text-fuchsia-300 font-semibold">Java</span>. I love turning messy datasets into clean stories — whether it’s through machine learning, visualization, or just asking the right “what if?”<br /><br />
+            Outside the world of semicolons and scatter plots, you’ll find me exploring tech trends, tweaking side projects, or chasing down that one bug that always hides when I hit “Run.”<br /><br />
+            <span className="text-yellow-400 font-bold">Let’s connect!</span>
+          </p>
+        </section>
+
+        <main className="w-full max-w-3xl mx-auto flex flex-col gap-10">
+          <section>
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow">
+              Experience
+            </h2>
+            <div className="bg-black/80 rounded-lg shadow p-4 mb-4">
+              <h3 className="font-bold text-lg text-yellow-300">
+                Data Analyst Intern, MetalMan Auto{' '}
+                <span className="text-xs text-cyan-200">
+                  (Jul 2024 – Sep 2024)
+                </span>
+              </h3>
+              <ul className="list-disc ml-6 mt-2 text-cyan-100">
+                <li>Optimized inventory management with predictive modeling, achieving 80%+ accuracy.</li>
+                <li>Forecasted inventory demands, reducing stockouts and excess holding costs by 15%.</li>
+                <li>Implemented data-driven recommendations for improved turnover rates.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-fuchsia-500 to-cyan-400 text-transparent bg-clip-text drop-shadow">
+              Projects
+            </h2>
+            <div className="space-y-4">
+              <div className="bg-black/80 rounded-lg shadow p-4">
+                <h3 className="font-bold text-cyan-300">Hate Speech Recognition and Classification</h3>
+                <p className="text-fuchsia-300 text-sm">Python & KNIME</p>
+                <ul className="list-disc ml-6 mt-2 text-cyan-100">
+                  <li>Classified 25,000 tweets into hate speech, offensive, and non-offensive content.</li>
+                  <li>Achieved 88% accuracy with Random Forest; automated workflow in KNIME (87% accuracy).</li>
+                </ul>
+              </div>
+              <div className="bg-black/80 rounded-lg shadow p-4">
+                <h3 className="font-bold text-yellow-300">Managing Credit Cards with PostgreSQL</h3>
+                <p className="text-cyan-300 text-sm">SQL</p>
+                <ul className="list-disc ml-6 mt-2 text-cyan-100">
+                  <li>Designed a secure credit card management system with 8 interconnected tables.</li>
+                  <li>Automated reward calculations and signup bonuses with triggers and procedures.</li>
+                  <li>Ensured PCI DSS compliance for sensitive data.</li>
+                </ul>
+              </div>
+              <div className="bg-black/80 rounded-lg shadow p-4">
+                <h3 className="font-bold text-fuchsia-300">Enhancing Social Networking Profiles for Students using ML</h3>
+                <p className="text-yellow-300 text-sm">Python</p>
+                <ul className="list-disc ml-6 mt-2 text-cyan-100">
+                  <li>Applied KMeans clustering to 1,000+ students for better recommendations.</li>
+                  <li>Increased interest-based matches by 20% using Pandas, NumPy, Matplotlib, Seaborn, and Scikit-learn.</li>
+                </ul>
+              </div>
+              <div className="bg-black/80 rounded-lg shadow p-4">
+                <h3 className="font-bold text-cyan-400">GDP and Economic Indicators Analysis</h3>
+                <p className="text-fuchsia-300 text-sm">Tableau</p>
+                <ul className="list-disc ml-6 mt-2 text-cyan-100">
+                  <li>Analyzed GDP and economic indicators across 18 countries with interactive Tableau dashboards.</li>
+                  <li>Identified trends in GDP, HDI, R&D, and gender wage gap for policy insights.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow">
+              Skills
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              <span className="bg-fuchsia-700 text-yellow-200 px-3 py-1 rounded-full text-sm font-semibold">Python</span>
+              <span className="bg-yellow-400 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">Java</span>
+              <span className="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold">SQL</span>
+              <span className="bg-fuchsia-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Tableau</span>
+              <span className="bg-yellow-300 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">MySQL</span>
+              <span className="bg-cyan-700 text-yellow-200 px-3 py-1 rounded-full text-sm font-semibold">KNIME</span>
+              <span className="bg-fuchsia-500 text-yellow-100 px-3 py-1 rounded-full text-sm font-semibold">Git/GitHub</span>
+              <span className="bg-yellow-400 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">Excel</span>
+              <span className="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold">VS Code</span>
+              <span className="bg-fuchsia-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Data Visualization</span>
+              <span className="bg-yellow-400 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">Predictive Modeling</span>
+              <span className="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Statistical Analysis</span>
+              <span className="bg-fuchsia-700 text-yellow-200 px-3 py-1 rounded-full text-sm font-semibold">Database Management</span>
+              <span className="bg-yellow-400 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">Problem-Solving</span>
+              <span className="bg-cyan-700 text-yellow-200 px-3 py-1 rounded-full text-sm font-semibold">Team Leadership</span>
+              <span className="bg-fuchsia-500 text-yellow-100 px-3 py-1 rounded-full text-sm font-semibold">Project Management</span>
+              <span className="bg-yellow-400 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">Adaptability</span>
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,11 @@
+{
+  "name": "deploy",
+  "version": "1.0.0",
+  "scripts": {
+    "predeploy": "npm run build && npm run export",
+    "deploy": "gh-pages -d out"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
+  }
+}
