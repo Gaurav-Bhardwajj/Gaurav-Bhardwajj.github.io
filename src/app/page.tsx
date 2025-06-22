@@ -1,48 +1,341 @@
 "use client";
 import ParticleNetwork from './ParticleNetwork';
+import React, { useState } from 'react';
+
+// Types for data-driven sections
+interface Project {
+  title: string;
+  link?: string;
+  tech: string;
+  bullets: string[];
+}
+interface Experience {
+  title: string;
+  company: string;
+  period: string;
+  bullets: string[];
+}
+
+// Card component for projects/experience
+const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
+  <div
+    className={`bg-black/80 rounded-xl shadow p-6 mb-4 transition-all duration-200 border border-transparent hover:border-fuchsia-400 hover:shadow-lg group/card ${className}`}
+  >
+    {children}
+  </div>
+);
+
+// Skill badge component
+const SkillBadge: React.FC<{ skill: string }> = ({ skill }) => (
+  <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">{skill}</span>
+);
+
+// Data for projects
+const projects: Project[] = [
+  {
+    title: 'Hate Speech Recognition and Classification',
+    link: 'https://github.com/Gaurav-Bhardwajj/Hate-Speech-Recognition-main',
+    tech: 'Python, KNIME',
+    bullets: [
+      'Built a machine learning system to detect and classify hate speech in 25,000 tweets into hate speech, offensive, and non-offensive categories.',
+      'Achieved 88% accuracy using a Random Forest classifier; also designed an automated workflow in KNIME, yielding 87% accuracy.',
+      'Aimed to support content moderation by identifying inappropriate or harmful language automatically to promote a healthier online environment.',
+    ],
+  },
+  {
+    title: 'Managing Credit Cards with PostgreSQL',
+    link: 'https://github.com/Gaurav-Bhardwajj/Managing-Credit-Cards-main',
+    tech: 'SQL (PL/pgSQL)',
+    bullets: [
+      'Developed a secure credit card management system with 8 interconnected relational tables, ensuring effective transaction tracking and data integrity.',
+      'Implemented stored procedures and triggers for automatic reward calculations and signup bonuses.',
+      'Ensured compliance with PCI DSS standards for secure handling of sensitive financial data.',
+    ],
+  },
+  {
+    title: 'Enhancing Social Networking Profiles for Students Using ML',
+    link: 'https://github.com/Gaurav-Bhardwajj/Enhancing-Student-Social-Networking-Profile',
+    tech: 'Python (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn)',
+    bullets: [
+      'Applied KMeans clustering to data from 1,000+ students to recommend peer groups based on shared interests.',
+      'Improved interest-based matches by 20%, fostering more meaningful student interactions.',
+      'Leveraged machine learning to strengthen student communities by enhancing profile recommendations and encouraging deeper social engagement.',
+    ],
+  },
+  {
+    title: 'Credit Card Fraud Detection System',
+    link: 'https://github.com/Gaurav-Bhardwajj/Credit-card-frauddetection-main',
+    tech: 'Python, Machine Learning',
+    bullets: [
+      'Cleans, analyzes, and visualizes credit card transaction data to detect fraudulent activities.',
+      'Implements multiple machine learning models (KNN, Decision Trees, Random Forest) for fraud classification.',
+      'Provides insights and predictions to help prevent unauthorized transactions and financial losses.',
+    ],
+  },
+  {
+    title: 'Global GDP Insights Dashboard',
+    link: 'https://github.com/Gaurav-Bhardwajj/GDP-analysis-tableau',
+    tech: 'Tableau, Data Visualization, Economic Analysis',
+    bullets: [
+      'Designed and deployed an interactive Tableau dashboard to analyze GDP trends across 30+ countries, leveraging 35+ indicators including HDI, inflation, education, trade, labor force participation, and R&D investment for in-depth economic exploration.',
+      'Built impactful visualizations such as GDP waterfall charts, dual-axis correlation graphs, and sector-wise contribution breakdowns, uncovering complex patterns in economic growth, inequality, and global trade dynamics.',
+      'Extracted key insights like the positive correlation between R&D spending and patent output, the economic uplift from higher female labor participation, and the fiscal impact of government spending priorities, guiding data-driven policy decisions.',
+    ],
+  },
+];
+
+const ongoingProjects: Project[] = [
+  {
+    title: 'AI-Powered CCTV Surveillance System',
+    tech: 'Python, OpenCV, YOLOv8, Deep Learning, Template Matching, Ultralytics',
+    bullets: [
+      'Currently building a robust AI surveillance system to enhance public safety by automatically detecting threats, unusual activities, and object tampering in real-time CCTV feeds.',
+      'Utilizes YOLOv8 for multi-class object detection (e.g., weapons, fire, smoke), and integrates tampering detection using template matching for critical object monitoring (like unattended baggage or stolen artifacts).',
+      'Includes zone-based alerting via Region of Interest (ROI) selection, reducing false alarms and focusing surveillance attention where it matters most.',
+      'Optimized for real-time performance on edge devices like MacBook M1 Air, balancing high accuracy and low compute cost.',
+      'Designed with future scalability in mind, including plans to integrate theft detection, behavioral anomaly alerts, and a responsive alerting system, making it adaptable for use in museums, parking lots, or riot-prone zones.',
+    ],
+  },
+  {
+    title: 'MailMind – The Smart Email Assistant',
+    tech: 'Python, LLMs, LangChain, Streamlit, OpenAI API, Pinecone',
+    bullets: [
+      'Context-aware AI assistant designed to boost inbox productivity.',
+      'Capable of:',
+      '• Summarizing email threads.',
+      '• Classifying messages based on intent (e.g., action items, scheduling, follow-ups).',
+      '• Generating suggested replies for quick responses.',
+      'Uses natural language processing (NLP) to understand context, sentiment, and message relevance.',
+      'Built on a modular pipeline for flexible expansion and integration of future features.',
+      'Designed with privacy and usability in mind — aims to evolve with user behavior and needs.',
+      'Currently under active development.',
+    ],
+  },
+];
+
+const experiences: Experience[] = [
+  {
+    title: 'Data Analyst Intern',
+    company: 'MetalMan Auto',
+    period: '(Jul 2024 – Sep 2024)',
+    bullets: [
+      'Optimized inventory management with predictive modeling, achieving 80%+ accuracy.',
+      'Forecasted inventory demands, reducing stockouts and excess holding costs by 15%.',
+      'Implemented data-driven recommendations for improved turnover rates.',
+    ],
+  },
+];
+
+const skills = [
+  'Python', 'SQL', 'Java', 'Scikit-learn', 'KMeans', 'Random Forest', 'SVM', 'Naïve Bayes', 'Logistic Regression',
+  'TensorFlow', 'Keras', 'OpenCV', 'Text preprocessing', 'Vectorization', 'Sentiment/Hate Speech Classification',
+  'PostgreSQL', 'MySQL', 'KNIME', 'Tableau', 'Git/GitHub', 'Excel', 'VS Code', 'Data Analysis',
+  'Predictive Modeling', 'Statistical Analysis', 'Data Visualization', 'Machine Learning', 'Deep Learning', 'AI',
+];
+
+// Sticky navigation bar component
+const sections = [
+  { id: 'about', label: 'About Me' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'ongoing', label: 'Ongoing Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'skills', label: 'Skills' },
+];
+
+const StickyNav: React.FC = () => (
+  <nav className="sticky top-0 z-50 w-full bg-black/80 backdrop-blur border-b border-white/10 shadow flex justify-center py-2 mb-6">
+    <ul className="flex flex-wrap gap-4 sm:gap-8">
+      {sections.map((section) => (
+        <li key={section.id}>
+          <a
+            href={`#${section.id}`}
+            className="text-cyan-200 hover:text-fuchsia-400 font-semibold px-2 py-1 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-fuchsia-400"
+            style={{ scrollBehavior: 'smooth' }}
+          >
+            {section.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+);
+
+// Tabs for Projects/Ongoing Projects
+const ProjectTabs: React.FC = () => {
+  const [tab, setTab] = useState<'projects' | 'ongoing'>('projects');
+  return (
+    <div className="w-full">
+      <div className="flex justify-center gap-4 mb-6">
+        <button
+          className={`px-4 py-2 rounded-t-lg font-bold text-lg transition-colors border-b-2 ${tab === 'projects' ? 'text-fuchsia-400 border-fuchsia-400 bg-black/80' : 'text-cyan-200 border-transparent hover:text-fuchsia-400'}`}
+          onClick={() => setTab('projects')}
+          aria-selected={tab === 'projects'}
+        >
+          Projects
+        </button>
+        <button
+          className={`px-4 py-2 rounded-t-lg font-bold text-lg transition-colors border-b-2 ${tab === 'ongoing' ? 'text-fuchsia-400 border-fuchsia-400 bg-black/80' : 'text-cyan-200 border-transparent hover:text-fuchsia-400'}`}
+          onClick={() => setTab('ongoing')}
+          aria-selected={tab === 'ongoing'}
+        >
+          Ongoing Projects
+        </button>
+      </div>
+      {tab === 'projects' ? (
+        <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 group transition-transform duration-200 hover:scale-105">
+          <h2 className="text-3xl font-extrabold px-6 pt-6 pb-2 text-white uppercase drop-shadow tracking-wide font-serif transition-transform duration-200 group-hover:scale-105">
+            Projects
+          </h2>
+          <div className="space-y-6 bg-black/90 rounded-b-2xl shadow p-8">
+            {projects.map((proj) => (
+              <Card key={proj.title}>
+                {proj.link ? (
+                  <a href={proj.link} target="_blank" rel="noopener noreferrer" className="font-bold text-white text-2xl underline hover:text-red-400 focus:outline-none focus:ring-2 focus:ring-red-400 transition-colors font-serif">
+                    {proj.title}
+                  </a>
+                ) : (
+                  <span className="font-bold text-white text-2xl font-serif">{proj.title}</span>
+                )}
+                <p className="text-white text-base mt-1 font-medium">{proj.tech}</p>
+                <ul className="list-disc ml-6 mt-2 text-cyan-100">
+                  {proj.bullets.map((b, i) => (
+                    <li key={i} className="text-base leading-relaxed">{b}</li>
+                  ))}
+                </ul>
+              </Card>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 group transition-transform duration-200 hover:scale-105">
+          <h2 className="text-3xl font-extrabold px-6 pt-6 pb-2 text-white uppercase drop-shadow tracking-wide font-serif transition-transform duration-200 group-hover:scale-105">
+            Ongoing Projects (High-Impact Builds in Progress)
+          </h2>
+          <div className="space-y-6 bg-black/90 rounded-b-2xl shadow p-8">
+            {ongoingProjects.map((proj) => (
+              <Card key={proj.title}>
+                <span className="font-bold text-white text-2xl font-serif">{proj.title}</span>
+                <p className="text-white text-base mt-1 font-medium">{proj.tech}</p>
+                <ul className="list-disc ml-6 mt-2 text-cyan-100">
+                  {proj.bullets.map((b, i) => (
+                    <li key={i} className="text-base leading-relaxed">{b}</li>
+                  ))}
+                </ul>
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Collapsible section component
+const CollapsibleSection: React.FC<{
+  id: string;
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+}> = ({ id, title, children, defaultOpen = false }) => {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <section id={id} className="scroll-mt-24">
+      <button
+        className="w-full flex items-center justify-between px-6 pt-6 pb-2 text-3xl font-extrabold text-white uppercase drop-shadow tracking-wide font-serif transition-colors bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 rounded-t-2xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls={`section-content-${id}`}
+        type="button"
+      >
+        {title}
+        <span className="ml-4 text-2xl">{open ? '−' : '+'}</span>
+      </button>
+      {open && (
+        <div id={`section-content-${id}`} className="space-y-6 bg-black/90 rounded-b-2xl shadow p-8">
+          {children}
+        </div>
+      )}
+    </section>
+  );
+};
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen w-full bg-black p-0 flex flex-col items-center overflow-hidden">
+    <div className="relative min-h-screen w-full bg-black p-0 flex flex-col items-center overflow-hidden font-sans">
       <ParticleNetwork />
-      <div className="relative z-10 w-full flex flex-col items-center p-6 sm:p-12">
-        <header className="w-full max-w-3xl mx-auto text-center mb-8">
+      <StickyNav />
+      <div className="relative z-10 w-full flex flex-col items-center px-0 sm:px-2 md:px-4 py-4 sm:py-6">
+        <header className="w-full max-w-6xl mx-auto text-center mb-6">
           <div className="mx-auto flex justify-center">
-            <div className="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-full px-8 py-6 sm:px-12 sm:py-8 flex flex-col items-center gap-2 transition-all duration-300 hover:bg-white/20 hover:shadow-fuchsia-400/30 hover:scale-105" style={{boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)'}}>
-              <h1 className="text-5xl sm:text-6xl font-extrabold mb-2 tracking-tight bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow-lg">
+            <div className="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-full px-8 py-6 sm:px-12 sm:py-8 flex flex-col items-center gap-2 transition-all duration-300 hover:bg-white/20 hover:shadow-fuchsia-400/30 hover:scale-105 group">
+              <h1 className="text-5xl sm:text-6xl font-extrabold mb-2 tracking-tight bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow-lg transition-transform duration-200 group-hover:scale-105 text-red-500" style={{ color: '#ef4444', textTransform: 'none' }}>
                 Gaurav Bhardwaj
               </h1>
-              <p className="text-xl sm:text-2xl font-semibold mb-2 text-fuchsia-300 drop-shadow">
-                B. Tech. Computer Science (Data Science) @ The Northcap University
-              </p>
-              <p className="text-md text-cyan-200 flex items-center gap-4 justify-center">
-                Gurugram
-                <span className="flex items-center gap-1">
+              <p className="text-lg text-white font-semibold mb-2">Machine Learning Enthusiast</p>
+              <p className="text-md text-cyan-200 flex flex-wrap items-center gap-x-8 gap-y-2 justify-center mt-2">
+                <span className="flex items-center gap-2">
+                  {/* Location icon (Heroicons solid) */}
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" className="w-5 h-5 text-yellow-300" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                    <path fillRule="evenodd" d="M10 2a6 6 0 00-6 6c0 4.418 5.373 9.292 5.601 9.5a1 1 0 001.398 0C10.627 17.292 16 12.418 16 8a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Gurugram</span>
+                </span>
+                <span className="flex items-center gap-2">
                   <a
                     href="mailto:gauravvbhardwaj1@gmail.com"
-                    className="flex items-center gap-1 underline hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded transition-colors"
-                    aria-label="Send mail to Gaurav Bhardwaj"
+                    className="flex items-center gap-2 underline hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded transition-colors"
+                    aria-label="Send Mail to Gaurav Bhardwaj"
                   >
-                    {/* Mail icon (Heroicons outline) */}
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 inline-block align-text-bottom">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-.659 1.591l-7.09 7.09a2.25 2.25 0 01-3.182 0l-7.09-7.09A2.25 2.25 0 012.25 6.993V6.75" />
+                    {/* Mail icon (Material Design) with adjusted viewBox and alignment */}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20" fill="currentColor" className="w-5 h-5 text-fuchsia-400" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                      <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 20V8.99l8 7 8-7V20H4z"/>
                     </svg>
-                    <span className="sr-only sm:not-sr-only">mail</span>
+                    <span className="font-semibold">Mail</span>
                   </a>
                 </span>
-                <span className="flex items-center gap-1">
+                <span className="flex items-center gap-2">
                   <a
                     href="https://www.linkedin.com/in/gauravvbhardwaj1/"
-                    className="flex items-center gap-1 underline hover:text-fuchsia-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 rounded transition-colors"
+                    className="flex items-center gap-2 underline hover:text-fuchsia-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 rounded transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Gaurav Bhardwaj on LinkedIn"
                   >
-                    {/* LinkedIn icon (SVG) */}
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 inline-block align-text-bottom">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.04 0 3.601 2.002 3.601 4.604v5.592z" />
+                    {/* LinkedIn icon (official SVG) with adjusted viewBox and alignment */}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" className="w-5 h-5 text-cyan-400" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                      <path d="M100.28 448H7.4V148.9h92.88zm-46.44-340.7C24.09 107.3 0 83.2 0 53.6A53.6 53.6 0 0153.6 0c29.6 0 53.6 24.09 53.6 53.6 0 29.6-24 53.7-53.36 53.7zM447.8 448h-92.4V302.4c0-34.7-12.4-58.4-43.3-58.4-23.6 0-37.6 15.9-43.7 31.3-2.3 5.6-2.8 13.4-2.8 21.2V448h-92.4s1.2-242.1 0-267.1h92.4v37.9c12.3-19 34.3-46.1 83.5-46.1 60.9 0 106.6 39.8 106.6 125.4V448z"/>
                     </svg>
-                    <span className="sr-only sm:not-sr-only">LinkedIn</span>
+                    <span className="font-semibold">LinkedIn</span>
+                  </a>
+                </span>
+                <span className="flex items-center gap-2">
+                  <a
+                    href="https://github.com/Gaurav-Bhardwajj"
+                    className="flex items-center gap-2 underline hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Gaurav Bhardwaj on GitHub"
+                  >
+                    {/* GitHub icon */}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-white" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                      <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.577.688.479C19.138 20.2 22 16.448 22 12.021 22 6.484 17.523 2 12 2z"/>
+                    </svg>
+                    <span className="font-semibold">GitHub</span>
+                  </a>
+                </span>
+                <span className="flex items-center gap-2">
+                  <a
+                    href="https://x.com/gauravxcode"
+                    className="flex items-center gap-2 underline hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Gaurav Bhardwaj on Twitter/X"
+                  >
+                    {/* Twitter/X icon */}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" fill="currentColor" className="w-5 h-5 text-blue-400" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                      <path d="M1200 21.6L728.8 623.2L1197.6 1205.6H1027.2L661.6 749.6L256 1205.6H0L496.8 579.2L54.4 21.6H230.4L563.2 441.6L944 21.6H1200ZM960 1096.8H1072L320 130.4H208L960 1096.8Z"/>
+                    </svg>
+                    <span className="font-semibold">Twitter/X</span>
                   </a>
                 </span>
               </p>
@@ -50,138 +343,47 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="w-full max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-fuchsia-500 to-cyan-400 text-transparent bg-clip-text drop-shadow">
-            About Me
-          </h2>
-          <p className="text-lg leading-relaxed bg-black/80 text-cyan-100 rounded-lg shadow p-6">
-            Hi, I’m <span className="text-fuchsia-400 font-bold">Gaurav Bhardwaj</span> — part data whisperer, part code ninja, and full-time enthusiast of all things tech.<br /><br />
-            I’m currently wrapping up my B.Tech in Computer Science with a specialization in Data Science at The NorthCap University. But honestly? I’ve spent just as much time outside the classroom playing with data, building things that (hopefully) make life a little smarter.<br /><br />
-            I’ve trained machines to detect hate speech, designed a credit card system that practically runs itself, and built dashboards that make GDP stats look like a Netflix binge. Oh, and I once helped a company save money just by being friends with numbers. (Okay, I was a Data Analyst Intern, but you get the idea.)<br /><br />
-            I speak fluent <span className="text-yellow-300 font-semibold">Python</span>, write heartfelt <span className="text-cyan-300 font-semibold">SQL</span> queries, and occasionally flirt with <span className="text-fuchsia-300 font-semibold">Java</span>. I love turning messy datasets into clean stories — whether it’s through machine learning, visualization, or just asking the right “what if?”<br /><br />
-            Outside the world of semicolons and scatter plots, you’ll find me exploring tech trends, tweaking side projects, or chasing down that one bug that always hides when I hit “Run.”<br /><br />
-            <span className="text-yellow-400 font-bold">Let’s connect!</span>
-          </p>
+        <section id="about" className="w-full max-w-6xl mx-auto mb-6 scroll-mt-24">
+          <div className="rounded-lg bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-4 group transition-transform duration-200 hover:scale-105">
+            <h2 className="text-3xl font-bold px-6 pt-6 pb-2 text-white uppercase drop-shadow transition-transform duration-200 group-hover:scale-105">
+              About Me
+            </h2>
+            <p className="text-lg leading-relaxed bg-black/80 text-cyan-100 rounded-b-lg shadow p-6">
+              I’m Gaurav, currently wrapping up my BTech in Computer Science with a focus on Data Science, where most of my time goes into building systems that make sense of data — from machine learning models for hate speech detection to clustering algorithms for smarter social recommendations. I’ve worked across projects involving deep learning, NLP, computer vision, and predictive analytics, using tools like TensorFlow, Keras, Scikit-learn, OpenCV, and KNIME. I enjoy working with structured and unstructured data, designing effective SQL databases, automating workflows, and building dashboards that turn raw metrics into intuitive insights. Whether it’s analyzing global economic indicators in Tableau or creating intelligent systems that learn and improve, I approach every problem with curiosity, a love for clean code, and a focus on meaningful outcomes.
+            </p>
+          </div>
         </section>
 
-        <main className="w-full max-w-3xl mx-auto flex flex-col gap-10">
-          {/* Projects Section */}
-          <section>
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-fuchsia-500 to-cyan-400 text-transparent bg-clip-text drop-shadow">
-              Projects
-            </h2>
-            <div className="space-y-4">
-              <div className="bg-black/80 rounded-lg shadow p-4">
-                <h3 className="font-bold text-cyan-300">Hate Speech Recognition and Classification</h3>
-                <p className="text-fuchsia-300 text-sm">Python & KNIME</p>
-                <ul className="list-disc ml-6 mt-2 text-cyan-100">
-                  <li>Classified 25,000 tweets into hate speech, offensive, and non-offensive content.</li>
-                  <li>Achieved 88% accuracy with Random Forest; automated workflow in KNIME (87% accuracy).</li>
-                </ul>
-              </div>
-              <div className="bg-black/80 rounded-lg shadow p-4">
-                <h3 className="font-bold text-yellow-300">Managing Credit Cards with PostgreSQL</h3>
-                <p className="text-cyan-300 text-sm">SQL</p>
-                <ul className="list-disc ml-6 mt-2 text-cyan-100">
-                  <li>Designed a secure credit card management system with 8 interconnected tables.</li>
-                  <li>Automated reward calculations and signup bonuses with triggers and procedures.</li>
-                  <li>Ensured PCI DSS compliance for sensitive data.</li>
-                </ul>
-              </div>
-              <div className="bg-black/80 rounded-lg shadow p-4">
-                <h3 className="font-bold text-fuchsia-300">Enhancing Social Networking Profiles for Students using ML</h3>
-                <p className="text-yellow-300 text-sm">Python</p>
-                <ul className="list-disc ml-6 mt-2 text-cyan-100">
-                  <li>Applied KMeans clustering to 1,000+ students for better recommendations.</li>
-                  <li>Increased interest-based matches by 20% using Pandas, NumPy, Matplotlib, Seaborn, and Scikit-learn.</li>
-                </ul>
-              </div>
-              <div className="bg-black/80 rounded-lg shadow p-4">
-                <h3 className="font-bold text-cyan-400">GDP and Economic Indicators Analysis</h3>
-                <p className="text-fuchsia-300 text-sm">Tableau</p>
-                <ul className="list-disc ml-6 mt-2 text-cyan-100">
-                  <li>Analyzed GDP and economic indicators across 18 countries with interactive Tableau dashboards.</li>
-                  <li>Identified trends in GDP, HDI, R&D, and gender wage gap for policy insights.</li>
-                </ul>
-              </div>
-            </div>
-          </section>
+        <main className="w-full max-w-6xl mx-auto flex flex-col gap-2">
+          {/* Projects & Ongoing Projects Tabs (collapsible) */}
+          <CollapsibleSection id="projects" title="Projects & Ongoing Projects" defaultOpen={true}>
+            <ProjectTabs />
+          </CollapsibleSection>
 
-          {/* Experience Section */}
-          <section>
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow">
-              Experience
-            </h2>
-            <div className="bg-black/80 rounded-lg shadow p-4 mb-4">
-              <h3 className="font-bold text-lg text-yellow-300">
-                Data Analyst Intern, MetalMan Auto{' '}
-                <span className="text-xs text-cyan-200">
-                  (Jul 2024 – Sep 2024)
-                </span>
-              </h3>
-              <ul className="list-disc ml-6 mt-2 text-cyan-100">
-                <li>Optimized inventory management with predictive modeling, achieving 80%+ accuracy.</li>
-                <li>Forecasted inventory demands, reducing stockouts and excess holding costs by 15%.</li>
-                <li>Implemented data-driven recommendations for improved turnover rates.</li>
-              </ul>
+          {/* Experience Section (collapsible) */}
+          <CollapsibleSection id="experience" title="Experience">
+            <div className="space-y-6">
+              {experiences.map((exp) => (
+                <Card key={exp.title + exp.company}>
+                  <span className="font-bold text-2xl text-white font-serif">{exp.title}, {exp.company} <span className="text-xs text-cyan-200 font-sans">{exp.period}</span></span>
+                  <ul className="list-disc ml-6 mt-2 text-cyan-100">
+                    {exp.bullets.map((b, i) => (
+                      <li key={i} className="text-base leading-relaxed">{b}</li>
+                    ))}
+                  </ul>
+                </Card>
+              ))}
             </div>
-          </section>
+          </CollapsibleSection>
 
-          {/* Technical Skills Section */}
-          <section>
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow">
-              Tech Skills
-            </h2>
-            <div className="bg-black/80 rounded-lg shadow p-6 mb-8 text-cyan-100">
-              <div className="flex flex-wrap gap-2 justify-center mb-4">
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Python</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">SQL</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Java</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Scikit-learn</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">KMeans</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Random Forest</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">SVM</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Naïve Bayes</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Logistic Regression</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">TensorFlow</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Keras</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">OpenCV</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Text preprocessing</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Vectorization</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Sentiment/Hate Speech Classification</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">PostgreSQL</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">MySQL</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">KNIME</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Tableau</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Git/GitHub</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Excel</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">VS Code</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Data Analysis</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Predictive Modeling</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Statistical Analysis</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Data Visualization</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Machine Learning</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Deep Learning</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">AI</span>
-              </div>
+          {/* Skills Section (collapsible) */}
+          <CollapsibleSection id="skills" title="Skills">
+            <div className="flex flex-wrap gap-3 justify-center">
+              {skills.map((skill) => (
+                <SkillBadge key={skill} skill={skill} />
+              ))}
             </div>
-          </section>
-
-          {/* Soft Skills Section */}
-          <section>
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-fuchsia-500 to-cyan-400 text-transparent bg-clip-text drop-shadow">
-              Soft Skills
-            </h2>
-            <div className="bg-black/80 rounded-lg shadow p-6 mb-8 text-cyan-100">
-              <div className="flex flex-wrap gap-2 justify-center mb-4">
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Problem Solving & Critical Thinking</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Team Leadership & Collaboration</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Project Management</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Adaptability & Quick Learning</span>
-                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Clear Communication</span>
-              </div>
-            </div>
-          </section>
+          </CollapsibleSection>
         </main>
       </div>
     </div>
