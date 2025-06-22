@@ -6,11 +6,9 @@ export default function ParticleNetwork() {
   const p5Instance = useRef<any>(null);
 
   useEffect(() => {
-    // Check if p5 is already loaded
     if (typeof window !== 'undefined' && (window as any).p5) {
       initializeSketch();
     } else {
-      // Load p5.js script
       const script = document.createElement("script");
       script.src = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js";
       script.async = true;
@@ -37,7 +35,10 @@ export default function ParticleNetwork() {
         const maxDistance = 120;
         const mouseDistance = 150;
         const mouseForce = 0.05;
-        let particles: any[] = [];
+        let mouseLastPosition: any;
+        let mouseStillnessTimer = 0;
+        const mouseStillnessThreshold = 100;
+        const particles: any[] = [];
 
         class Particle {
           position: any;
@@ -53,26 +54,33 @@ export default function ParticleNetwork() {
           }
 
           update() {
-            // Apply mouse attraction
             this.applyMouseForce();
-            
             this.velocity.add(this.acceleration);
             this.velocity.limit(this.maxSpeed);
             this.position.add(this.velocity);
-            this.acceleration.mult(0); // Reset acceleration
+            this.acceleration.mult(0);
             this.detectEdges();
           }
 
           applyMouseForce() {
-            let mouse = p.createVector(p.mouseX, p.mouseY);
-            let force = p.createVector(0, 0);
+            const mouse = p.createVector(p.mouseX, p.mouseY);
+            const force = p.createVector(0, 0);
             force.x = mouse.x - this.position.x;
             force.y = mouse.y - this.position.y;
-            let distance = force.mag();
+            const distance = force.mag();
+
+            if (mouseLastPosition && mouse.x === mouseLastPosition.x && mouse.y === mouseLastPosition.y) {
+              mouseStillnessTimer++;
+            } else {
+              mouseStillnessTimer = 0;
+              mouseLastPosition = p.createVector(mouse.x, mouse.y);
+            }
+
+            const decayFactor = mouseStillnessTimer > mouseStillnessThreshold ? 0 : 1 - mouseStillnessTimer / mouseStillnessThreshold;
             
             if (distance < mouseDistance && distance > 0) {
               force.normalize();
-              force.mult(mouseForce * (1 - distance / mouseDistance));
+              force.mult(mouseForce * decayFactor * (1 - distance / mouseDistance));
               this.acceleration.add(force);
             }
           }
@@ -87,17 +95,15 @@ export default function ParticleNetwork() {
           }
 
           drawLines(particles: any[]) {
-            // Draw lines to other particles
-            for (let other of particles) {
-              let d = p.dist(this.position.x, this.position.y, other.position.x, other.position.y);
+            for (const other of particles) {
+              const d = p.dist(this.position.x, this.position.y, other.position.x, other.position.y);
               if (d < maxDistance) {
                 p.stroke(255, p.map(d, 0, maxDistance, 100, 0));
                 p.line(this.position.x, this.position.y, other.position.x, other.position.y);
               }
             }
             
-            // Draw line to mouse if close enough
-            let mouseDist = p.dist(this.position.x, this.position.y, p.mouseX, p.mouseY);
+            const mouseDist = p.dist(this.position.x, this.position.y, p.mouseX, p.mouseY);
             if (mouseDist < mouseDistance && mouseDist > 0) {
               p.stroke(0, 255, 255, p.map(mouseDist, 0, mouseDistance, 200, 0));
               p.line(this.position.x, this.position.y, p.mouseX, p.mouseY);
@@ -105,11 +111,10 @@ export default function ParticleNetwork() {
           }
 
           drawParticle() {
-            let mouseDist = p.dist(this.position.x, this.position.y, p.mouseX, p.mouseY);
+            const mouseDist = p.dist(this.position.x, this.position.y, p.mouseX, p.mouseY);
             
-            // Change particle size and color based on mouse proximity
             if (mouseDist < mouseDistance) {
-              let intensity = p.map(mouseDist, 0, mouseDistance, 255, 100);
+              const intensity = p.map(mouseDist, 0, mouseDistance, 255, 100);
               p.fill(0, 255, 255, intensity);
               p.noStroke();
               p.ellipse(this.position.x, this.position.y, 5, 5);
@@ -123,6 +128,7 @@ export default function ParticleNetwork() {
 
         p.setup = () => {
           p.createCanvas(p.windowWidth, p.windowHeight);
+          mouseLastPosition = p.createVector(p.mouseX, p.mouseY);
           for (let i = 0; i < numParticles; i++) {
             particles.push(new Particle());
           }
