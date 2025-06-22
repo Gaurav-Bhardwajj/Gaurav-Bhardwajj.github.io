@@ -7,30 +7,34 @@ export default function Home() {
       <ParticleNetwork />
       <div className="relative z-10 w-full flex flex-col items-center p-6 sm:p-12">
         <header className="w-full max-w-3xl mx-auto text-center mb-8">
-          <h1 className="text-5xl sm:text-6xl font-extrabold mb-2 tracking-tight bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow-lg">
-            Gaurav Bhardwaj
-          </h1>
-          <p className="text-xl sm:text-2xl font-semibold mb-2 text-fuchsia-300 drop-shadow">
-            B. Tech. Computer Science (Data Science) @ The Northcap University
-          </p>
-          <p className="text-md text-cyan-200">
-            Gurugram •{' '}
-            <a
-              href="mailto:gaurav26bhardwaj62@gmail.com"
-              className="underline hover:text-yellow-400"
-            >
-              gauravvbhardwaj1@gmail.com
-            </a>{' '}
-            •{' '}
-            <a
-              href="https://www.linkedin.com/in/gauravvbhardwaj1/"
-              className="underline hover:text-fuchsia-400"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-          </p>
+          <div className="mx-auto flex justify-center">
+            <div className="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-full px-8 py-6 sm:px-12 sm:py-8 flex flex-col items-center gap-2 transition-all duration-300 hover:bg-white/20 hover:shadow-fuchsia-400/30 hover:scale-105" style={{boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)'}}>
+              <h1 className="text-5xl sm:text-6xl font-extrabold mb-2 tracking-tight bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow-lg">
+                Gaurav Bhardwaj
+              </h1>
+              <p className="text-xl sm:text-2xl font-semibold mb-2 text-fuchsia-300 drop-shadow">
+                B. Tech. Computer Science (Data Science) @ The Northcap University
+              </p>
+              <p className="text-md text-cyan-200">
+                Gurugram •{' '}
+                <a
+                  href="mailto:gauravvbhardwaj1@gmail.com"
+                  className="underline hover:text-yellow-400"
+                >
+                  gauravvbhardwaj1@gmail.com
+                </a>{' '}
+                •{' '}
+                <a
+                  href="https://www.linkedin.com/in/gauravvbhardwaj1/"
+                  className="underline hover:text-fuchsia-400"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </p>
+            </div>
+          </div>
         </header>
 
         <section className="w-full max-w-3xl mx-auto mb-12">
