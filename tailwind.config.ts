@@ -11,6 +11,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primaryred: "#e11d48", // Tailwind's rose-600
       },
     },
   },
