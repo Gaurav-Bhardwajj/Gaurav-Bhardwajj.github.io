@@ -15,23 +15,36 @@ export default function Home() {
               <p className="text-xl sm:text-2xl font-semibold mb-2 text-fuchsia-300 drop-shadow">
                 B. Tech. Computer Science (Data Science) @ The Northcap University
               </p>
-              <p className="text-md text-cyan-200">
-                Gurugram •{' '}
-                <a
-                  href="mailto:gauravvbhardwaj1@gmail.com"
-                  className="underline hover:text-yellow-400"
-                >
-                  gauravvbhardwaj1@gmail.com
-                </a>{' '}
-                •{' '}
-                <a
-                  href="https://www.linkedin.com/in/gauravvbhardwaj1/"
-                  className="underline hover:text-fuchsia-400"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  LinkedIn
-                </a>
+              <p className="text-md text-cyan-200 flex items-center gap-4 justify-center">
+                Gurugram
+                <span className="flex items-center gap-1">
+                  <a
+                    href="mailto:gauravvbhardwaj1@gmail.com"
+                    className="flex items-center gap-1 underline hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded transition-colors"
+                    aria-label="Send mail to Gaurav Bhardwaj"
+                  >
+                    {/* Mail icon (Heroicons outline) */}
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 inline-block align-text-bottom">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-.659 1.591l-7.09 7.09a2.25 2.25 0 01-3.182 0l-7.09-7.09A2.25 2.25 0 012.25 6.993V6.75" />
+                    </svg>
+                    <span className="sr-only sm:not-sr-only">mail</span>
+                  </a>
+                </span>
+                <span className="flex items-center gap-1">
+                  <a
+                    href="https://www.linkedin.com/in/gauravvbhardwaj1/"
+                    className="flex items-center gap-1 underline hover:text-fuchsia-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 rounded transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Gaurav Bhardwaj on LinkedIn"
+                  >
+                    {/* LinkedIn icon (SVG) */}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 inline-block align-text-bottom">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.04 0 3.601 2.002 3.601 4.604v5.592z" />
+                    </svg>
+                    <span className="sr-only sm:not-sr-only">LinkedIn</span>
+                  </a>
+                </span>
               </p>
             </div>
           </div>
