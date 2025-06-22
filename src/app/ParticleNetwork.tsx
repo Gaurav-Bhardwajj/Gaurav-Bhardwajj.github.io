@@ -135,7 +135,7 @@ export default function ParticleNetwork() {
         };
 
         p.draw = () => {
-          p.background(20, 20, 30, 50);
+          p.background(10, 10, 20, 30);
 
           particles.forEach((particle) => {
             particle.update();
