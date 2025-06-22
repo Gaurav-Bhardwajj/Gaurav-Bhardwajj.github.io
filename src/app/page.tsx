@@ -136,8 +136,7 @@ const skills = [
 // Sticky navigation bar component
 const sections = [
   { id: 'about', label: 'About Me' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'ongoing', label: 'Ongoing Projects' },
+  { id: 'projects', label: 'Projects & Ongoing Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
 ];
@@ -149,10 +148,16 @@ const StickyNav: React.FC = () => (
         <li key={section.id}>
           <a
             href={`#${section.id}`}
-            className="text-cyan-200 hover:text-fuchsia-400 font-semibold px-2 py-1 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-fuchsia-400"
+            className="relative inline-flex items-center px-4 py-2 font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 group text-base
+              bg-gradient-to-r from-cyan-900/40 via-fuchsia-900/40 to-yellow-900/40
+              text-cyan-200 hover:text-fuchsia-400 hover:bg-fuchsia-900/30
+              shadow-md hover:shadow-fuchsia-400/30 border border-white/10 hover:border-fuchsia-400"
             style={{ scrollBehavior: 'smooth' }}
           >
-            {section.label}
+            <span className="transition-colors duration-200 group-hover:text-fuchsia-400">
+              {section.label}
+            </span>
+            <span className="absolute left-0 top-0 w-full h-full rounded-lg bg-fuchsia-400 opacity-0 group-hover:opacity-10 transition-opacity duration-200 pointer-events-none"></span>
           </a>
         </li>
       ))}
@@ -356,7 +361,7 @@ export default function Home() {
 
         <main className="w-full max-w-6xl mx-auto flex flex-col gap-2">
           {/* Projects & Ongoing Projects Tabs (collapsible) */}
-          <CollapsibleSection id="projects" title="Projects & Ongoing Projects" defaultOpen={true}>
+          <CollapsibleSection id="projects" title="Projects" defaultOpen={true}>
             <ProjectTabs />
           </CollapsibleSection>
 
