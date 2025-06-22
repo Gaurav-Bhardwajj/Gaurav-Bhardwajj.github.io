@@ -48,25 +48,7 @@ export default function Home() {
         </section>
 
         <main className="w-full max-w-3xl mx-auto flex flex-col gap-10">
-          <section>
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow">
-              Experience
-            </h2>
-            <div className="bg-black/80 rounded-lg shadow p-4 mb-4">
-              <h3 className="font-bold text-lg text-yellow-300">
-                Data Analyst Intern, MetalMan Auto{' '}
-                <span className="text-xs text-cyan-200">
-                  (Jul 2024 – Sep 2024)
-                </span>
-              </h3>
-              <ul className="list-disc ml-6 mt-2 text-cyan-100">
-                <li>Optimized inventory management with predictive modeling, achieving 80%+ accuracy.</li>
-                <li>Forecasted inventory demands, reducing stockouts and excess holding costs by 15%.</li>
-                <li>Implemented data-driven recommendations for improved turnover rates.</li>
-              </ul>
-            </div>
-          </section>
-
+          {/* Projects Section */}
           <section>
             <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-fuchsia-500 to-cyan-400 text-transparent bg-clip-text drop-shadow">
               Projects
@@ -108,28 +90,79 @@ export default function Home() {
             </div>
           </section>
 
+          {/* Experience Section */}
           <section>
             <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow">
-              Skills
+              Experience
             </h2>
-            <div className="flex flex-wrap gap-2">
-              <span className="bg-fuchsia-700 text-yellow-200 px-3 py-1 rounded-full text-sm font-semibold">Python</span>
-              <span className="bg-yellow-400 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">Java</span>
-              <span className="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold">SQL</span>
-              <span className="bg-fuchsia-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Tableau</span>
-              <span className="bg-yellow-300 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">MySQL</span>
-              <span className="bg-cyan-700 text-yellow-200 px-3 py-1 rounded-full text-sm font-semibold">KNIME</span>
-              <span className="bg-fuchsia-500 text-yellow-100 px-3 py-1 rounded-full text-sm font-semibold">Git/GitHub</span>
-              <span className="bg-yellow-400 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">Excel</span>
-              <span className="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold">VS Code</span>
-              <span className="bg-fuchsia-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Data Visualization</span>
-              <span className="bg-yellow-400 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">Predictive Modeling</span>
-              <span className="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Statistical Analysis</span>
-              <span className="bg-fuchsia-700 text-yellow-200 px-3 py-1 rounded-full text-sm font-semibold">Database Management</span>
-              <span className="bg-yellow-400 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">Problem-Solving</span>
-              <span className="bg-cyan-700 text-yellow-200 px-3 py-1 rounded-full text-sm font-semibold">Team Leadership</span>
-              <span className="bg-fuchsia-500 text-yellow-100 px-3 py-1 rounded-full text-sm font-semibold">Project Management</span>
-              <span className="bg-yellow-400 text-fuchsia-900 px-3 py-1 rounded-full text-sm font-semibold">Adaptability</span>
+            <div className="bg-black/80 rounded-lg shadow p-4 mb-4">
+              <h3 className="font-bold text-lg text-yellow-300">
+                Data Analyst Intern, MetalMan Auto{' '}
+                <span className="text-xs text-cyan-200">
+                  (Jul 2024 – Sep 2024)
+                </span>
+              </h3>
+              <ul className="list-disc ml-6 mt-2 text-cyan-100">
+                <li>Optimized inventory management with predictive modeling, achieving 80%+ accuracy.</li>
+                <li>Forecasted inventory demands, reducing stockouts and excess holding costs by 15%.</li>
+                <li>Implemented data-driven recommendations for improved turnover rates.</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Technical Skills Section */}
+          <section>
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 text-transparent bg-clip-text drop-shadow">
+              Tech Skills
+            </h2>
+            <div className="bg-black/80 rounded-lg shadow p-6 mb-8 text-cyan-100">
+              <div className="flex flex-wrap gap-2 justify-center mb-4">
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Python</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">SQL</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Java</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Scikit-learn</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">KMeans</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Random Forest</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">SVM</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Naïve Bayes</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Logistic Regression</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">TensorFlow</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Keras</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">OpenCV</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Text preprocessing</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Vectorization</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Sentiment/Hate Speech Classification</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">PostgreSQL</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">MySQL</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">KNIME</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Tableau</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Git/GitHub</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Excel</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">VS Code</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Data Analysis</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Predictive Modeling</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Statistical Analysis</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Data Visualization</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Machine Learning</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Deep Learning</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">AI</span>
+              </div>
+            </div>
+          </section>
+
+          {/* Soft Skills Section */}
+          <section>
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-fuchsia-500 to-cyan-400 text-transparent bg-clip-text drop-shadow">
+              Soft Skills
+            </h2>
+            <div className="bg-black/80 rounded-lg shadow p-6 mb-8 text-cyan-100">
+              <div className="flex flex-wrap gap-2 justify-center mb-4">
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Problem Solving & Critical Thinking</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Team Leadership & Collaboration</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Project Management</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Adaptability & Quick Learning</span>
+                <span className="bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">Clear Communication</span>
+              </div>
             </div>
           </section>
         </main>
