@@ -3,7 +3,7 @@ const isGithubActions = process.env.GITHUB_ACTIONS || false;
 
 let repo = '';
 if (isGithubActions) {
-  repo = 'portfolio'; // force lowercase repo name
+  repo = 'Gaurav-Bhardwajj.github.io';
 }
 
 const nextConfig = {
