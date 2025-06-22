@@ -136,7 +136,7 @@ const skills = [
 // Sticky navigation bar component
 const sections = [
   { id: 'about', label: 'About Me' },
-  { id: 'projects', label: 'Projects & Ongoing Projects' },
+  { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
 ];
@@ -187,48 +187,49 @@ const ProjectTabs: React.FC = () => {
         </button>
       </div>
       {tab === 'projects' ? (
-        <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 group transition-transform duration-200 hover:scale-105">
-          <h2 className="text-3xl font-extrabold px-6 pt-6 pb-2 text-white uppercase drop-shadow tracking-wide font-serif transition-transform duration-200 group-hover:scale-105">
-            Projects
-          </h2>
-          <div className="space-y-6 bg-black/90 rounded-b-2xl shadow p-8">
-            {projects.map((proj) => (
-              <Card key={proj.title}>
-                {proj.link ? (
-                  <a href={proj.link} target="_blank" rel="noopener noreferrer" className="font-bold text-white text-2xl underline hover:text-red-400 focus:outline-none focus:ring-2 focus:ring-red-400 transition-colors font-serif">
-                    {proj.title}
-                  </a>
-                ) : (
-                  <span className="font-bold text-white text-2xl font-serif">{proj.title}</span>
-                )}
-                <p className="text-white text-base mt-1 font-medium">{proj.tech}</p>
-                <ul className="list-disc ml-6 mt-2 text-cyan-100">
-                  {proj.bullets.map((b, i) => (
-                    <li key={i} className="text-base leading-relaxed">{b}</li>
-                  ))}
-                </ul>
-              </Card>
-            ))}
-          </div>
+        <div>
+          {projects.map((proj) => (
+            <Card key={proj.title}>
+              {proj.link ? (
+                <a
+                  href={proj.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-blue-400 text-2xl underline hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors font-serif inline-flex items-center gap-2"
+                >
+                  {proj.title}
+                  {/* External link icon (Heroicons outline) */}
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75V3.75a.75.75 0 00-.75-.75h-12a.75.75 0 00-.75.75v16.5a.75.75 0 00.75.75h16.5a.75.75 0 00.75-.75v-12a.75.75 0 00-.75-.75h-3" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 8.25l-7.5 7.5" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 8.25h-6v6" />
+                  </svg>
+                </a>
+              ) : (
+                <span className="font-bold text-white text-2xl font-serif">{proj.title}</span>
+              )}
+              <p className="text-white text-base mt-1 font-medium">{proj.tech}</p>
+              <ul className="list-disc ml-6 mt-2 text-cyan-100">
+                {proj.bullets.map((b, i) => (
+                  <li key={i} className="text-base leading-relaxed">{b}</li>
+                ))}
+              </ul>
+            </Card>
+          ))}
         </div>
       ) : (
-        <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 group transition-transform duration-200 hover:scale-105">
-          <h2 className="text-3xl font-extrabold px-6 pt-6 pb-2 text-white uppercase drop-shadow tracking-wide font-serif transition-transform duration-200 group-hover:scale-105">
-            Ongoing Projects (High-Impact Builds in Progress)
-          </h2>
-          <div className="space-y-6 bg-black/90 rounded-b-2xl shadow p-8">
-            {ongoingProjects.map((proj) => (
-              <Card key={proj.title}>
-                <span className="font-bold text-white text-2xl font-serif">{proj.title}</span>
-                <p className="text-white text-base mt-1 font-medium">{proj.tech}</p>
-                <ul className="list-disc ml-6 mt-2 text-cyan-100">
-                  {proj.bullets.map((b, i) => (
-                    <li key={i} className="text-base leading-relaxed">{b}</li>
-                  ))}
-                </ul>
-              </Card>
-            ))}
-          </div>
+        <div>
+          {ongoingProjects.map((proj) => (
+            <Card key={proj.title}>
+              <span className="font-bold text-white text-2xl font-serif">{proj.title}</span>
+              <p className="text-white text-base mt-1 font-medium">{proj.tech}</p>
+              <ul className="list-disc ml-6 mt-2 text-cyan-100">
+                {proj.bullets.map((b, i) => (
+                  <li key={i} className="text-base leading-relaxed">{b}</li>
+                ))}
+              </ul>
+            </Card>
+          ))}
         </div>
       )}
     </div>
@@ -348,26 +349,34 @@ export default function Home() {
           </div>
         </header>
 
-        <section id="about" className="w-full max-w-6xl mx-auto mb-6 scroll-mt-24">
-          <div className="rounded-lg bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-4 group transition-transform duration-200 hover:scale-105">
-            <h2 className="text-3xl font-bold px-6 pt-6 pb-2 text-white uppercase drop-shadow transition-transform duration-200 group-hover:scale-105">
-              About Me
-            </h2>
+        {/* About Me Section (collapsible, single heading, matching width and spacing) */}
+        <div className="w-full max-w-6xl mx-auto mb-6 scroll-mt-24">
+          <CollapsibleSection id="about" title="About Me" defaultOpen={false}>
             <p className="text-lg leading-relaxed bg-black/80 text-cyan-100 rounded-b-lg shadow p-6">
               I’m Gaurav, currently wrapping up my BTech in Computer Science with a focus on Data Science, where most of my time goes into building systems that make sense of data — from machine learning models for hate speech detection to clustering algorithms for smarter social recommendations. I’ve worked across projects involving deep learning, NLP, computer vision, and predictive analytics, using tools like TensorFlow, Keras, Scikit-learn, OpenCV, and KNIME. I enjoy working with structured and unstructured data, designing effective SQL databases, automating workflows, and building dashboards that turn raw metrics into intuitive insights. Whether it’s analyzing global economic indicators in Tableau or creating intelligent systems that learn and improve, I approach every problem with curiosity, a love for clean code, and a focus on meaningful outcomes.
             </p>
+          </CollapsibleSection>
+        </div>
+
+        {/* Projects Section (non-collapsible, interactive box) */}
+        <section id="projects" className="w-full max-w-6xl mx-auto mb-6 scroll-mt-24">
+          <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 group transition-transform duration-200 hover:scale-105">
+            <h2 className="text-3xl font-extrabold px-6 pt-6 pb-2 text-white uppercase drop-shadow tracking-wide font-serif transition-transform duration-200 group-hover:scale-105">
+              Projects
+            </h2>
+            <div className="space-y-6 bg-black/90 rounded-b-2xl shadow p-8">
+              <ProjectTabs />
+            </div>
           </div>
         </section>
 
-        <main className="w-full max-w-6xl mx-auto flex flex-col gap-2">
-          {/* Projects & Ongoing Projects Tabs (collapsible) */}
-          <CollapsibleSection id="projects" title="Projects" defaultOpen={true}>
-            <ProjectTabs />
-          </CollapsibleSection>
-
-          {/* Experience Section (collapsible) */}
-          <CollapsibleSection id="experience" title="Experience">
-            <div className="space-y-6">
+        {/* Experience Section (non-collapsible, interactive box) */}
+        <section id="experience" className="w-full max-w-6xl mx-auto mb-6 scroll-mt-24">
+          <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 group transition-transform duration-200 hover:scale-105">
+            <h2 className="text-3xl font-extrabold px-6 pt-6 pb-2 text-white uppercase drop-shadow tracking-wide font-serif transition-transform duration-200 group-hover:scale-105">
+              Experience
+            </h2>
+            <div className="space-y-6 bg-black/90 rounded-b-2xl shadow p-8">
               {experiences.map((exp) => (
                 <Card key={exp.title + exp.company}>
                   <span className="font-bold text-2xl text-white font-serif">{exp.title}, {exp.company} <span className="text-xs text-cyan-200 font-sans">{exp.period}</span></span>
@@ -379,17 +388,22 @@ export default function Home() {
                 </Card>
               ))}
             </div>
-          </CollapsibleSection>
+          </div>
+        </section>
 
-          {/* Skills Section (collapsible) */}
-          <CollapsibleSection id="skills" title="Skills">
-            <div className="flex flex-wrap gap-3 justify-center">
+        {/* Skills Section (non-collapsible, interactive box) */}
+        <section id="skills" className="w-full max-w-6xl mx-auto mb-6 scroll-mt-24">
+          <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 group transition-transform duration-200 hover:scale-105">
+            <h2 className="text-3xl font-extrabold px-6 pt-6 pb-2 text-white uppercase drop-shadow tracking-wide font-serif transition-transform duration-200 group-hover:scale-105">
+              Skills
+            </h2>
+            <div className="flex flex-wrap gap-3 justify-center bg-black/90 rounded-b-2xl shadow p-8">
               {skills.map((skill) => (
                 <SkillBadge key={skill} skill={skill} />
               ))}
             </div>
-          </CollapsibleSection>
-        </main>
+          </div>
+        </section>
       </div>
     </div>
   );
