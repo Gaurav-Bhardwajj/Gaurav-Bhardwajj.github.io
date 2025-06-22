@@ -9,8 +9,8 @@ if (isGithubActions) {
 const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
-  basePath: '',
-  assetPrefix: '',
+  basePath: repo ? `/${repo}` : '',
+  assetPrefix: repo ? `/${repo}/` : '',
 };
 
 module.exports = nextConfig;
