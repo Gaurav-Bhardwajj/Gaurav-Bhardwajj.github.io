@@ -69,11 +69,17 @@ export default function ParticleNetwork() {
             force.x = mouse.x - this.position.x;
             force.y = mouse.y - this.position.y;
             let distance = force.mag();
-            
+            // Instead of attraction, apply gentle repulsion or jitter if too close to mouse
             if (distance < mouseDistance && distance > 0) {
+              // Repel from mouse
               force.normalize();
-              force.mult(mouseForce * (1 - distance / mouseDistance));
+              force.mult(-mouseForce * (1 - distance / mouseDistance));
               this.acceleration.add(force);
+              // Add a small random jitter for more natural movement
+              this.acceleration.add(p.createVector(p.random(-0.03, 0.03), p.random(-0.03, 0.03)));
+            } else {
+              // Always add a small random walk for natural drift
+              this.acceleration.add(p.createVector(p.random(-0.01, 0.01), p.random(-0.01, 0.01)));
             }
           }
 
