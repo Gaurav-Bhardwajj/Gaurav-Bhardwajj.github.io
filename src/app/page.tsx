@@ -136,7 +136,7 @@ const skills = [
 // Sticky navigation bar component
 const sections = [
   { id: 'about', label: 'About Me' },
-  { id: 'projects', label: 'Projects' },
+  { id: 'projects', label: 'Projects & Ongoing Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
 ];
@@ -191,19 +191,8 @@ const ProjectTabs: React.FC = () => {
           {projects.map((proj) => (
             <Card key={proj.title}>
               {proj.link ? (
-                <a
-                  href={proj.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-blue-400 text-2xl underline hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors font-serif inline-flex items-center gap-2"
-                >
+                <a href={proj.link} target="_blank" rel="noopener noreferrer" className="font-bold text-white text-2xl underline hover:text-red-400 focus:outline-none focus:ring-2 focus:ring-red-400 transition-colors font-serif">
                   {proj.title}
-                  {/* External link icon (Heroicons outline) */}
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75V3.75a.75.75 0 00-.75-.75h-12a.75.75 0 00-.75.75v16.5a.75.75 0 00.75.75h16.5a.75.75 0 00.75-.75v-12a.75.75 0 00-.75-.75h-3" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 8.25l-7.5 7.5" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 8.25h-6v6" />
-                  </svg>
                 </a>
               ) : (
                 <span className="font-bold text-white text-2xl font-serif">{proj.title}</span>
