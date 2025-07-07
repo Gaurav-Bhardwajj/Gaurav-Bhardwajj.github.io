@@ -136,13 +136,13 @@ const skills = [
 // Sticky navigation bar component
 const sections = [
   { id: 'about', label: 'About Me' },
-  { id: 'projects', label: 'Projects & Ongoing Projects' },
+  { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
 ];
 
 const StickyNav: React.FC = () => (
-  <nav className="sticky top-0 z-50 w-full bg-black/80 backdrop-blur border-b border-white/10 shadow flex justify-center py-2 mb-6 font-['Roboto','sans-serif']">
+  <nav className="fixed top-0 left-0 z-50 w-full bg-black/80 backdrop-blur border-b border-white/10 shadow flex justify-center py-2 mb-6 font-['Roboto','sans-serif'] transition-transform duration-300">
     <ul className="flex flex-wrap gap-4 sm:gap-8">
       {sections.map((section) => (
         <li key={section.id}>
@@ -260,10 +260,10 @@ const CollapsibleSection: React.FC<{
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen w-full bg-black p-0 flex flex-col items-center overflow-hidden font-['Roboto','sans-serif']">
+    <div className="relative min-h-screen w-full bg-black p-0 flex flex-col items-center overflow-hidden font-roboto" style={{ fontFamily: 'Roboto, sans-serif' }}>
       <ParticleNetwork />
       <StickyNav />
-      <div className="relative z-10 w-full flex flex-col items-center px-0 sm:px-2 md:px-4 py-4 sm:py-6 font-['Roboto','sans-serif']">
+      <div className="relative z-10 w-full flex flex-col items-center px-0 sm:px-2 md:px-4 py-4 sm:py-6 font-roboto" style={{ paddingTop: '64px' }}>
         <header className="w-full max-w-6xl mx-auto text-center mb-6 font-['Roboto','sans-serif']">
           <div className="mx-auto flex justify-center">
             <div className="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-full px-8 py-6 sm:px-12 sm:py-8 flex flex-col items-center gap-2 transition-all duration-300 hover:bg-white/20 hover:shadow-blue-400/30 hover:scale-105 group font-['Roboto','sans-serif']">
@@ -352,7 +352,7 @@ export default function Home() {
         {/* About Me Section (collapsible, single heading, matching width and spacing) */}
         <div className="w-full max-w-6xl mx-auto mb-6 scroll-mt-24 font-['Roboto','sans-serif']">
           <CollapsibleSection id="about" title={<span className="text-white" style={{ textTransform: 'none' }}>About Me</span>} defaultOpen={false}>
-            <p className="text-base leading-relaxed bg-black/80 text-white rounded-b-lg shadow p-6 font-['Roboto','sans-serif']">
+            <p className="text-base leading-relaxed bg-black/80 text-white rounded-b-lg shadow p-6 font-roboto" style={{ fontFamily: 'Roboto, sans-serif' }}>
               I’m Gaurav, currently wrapping up my BTech in Computer Science with a focus on Data Science, where most of my time goes into building systems that make sense of data — from machine learning models for hate speech detection to clustering algorithms for smarter social recommendations. I’ve worked across projects involving deep learning, NLP, computer vision, and predictive analytics, using tools like TensorFlow, Keras, Scikit-learn, OpenCV, and KNIME. I enjoy working with structured and unstructured data, designing effective SQL databases, automating workflows, and building dashboards that turn raw metrics into intuitive insights. Whether it’s analyzing global economic indicators in Tableau or creating intelligent systems that learn and improve, I approach every problem with curiosity, a love for clean code, and a focus on meaningful outcomes.
             </p>
           </CollapsibleSection>
