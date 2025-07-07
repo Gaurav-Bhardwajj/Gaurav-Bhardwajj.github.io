@@ -143,7 +143,7 @@ const sections = [
 
 const StickyNav: React.FC = () => (
   <nav className="fixed top-0 left-0 z-50 w-full bg-black/80 backdrop-blur border-b border-white/10 shadow flex justify-center py-2 mb-6 font-['Roboto','sans-serif'] transition-transform duration-300">
-    <ul className="flex flex-wrap gap-4 sm:gap-8">
+    <ul className="flex flex-wrap gap-4 sm:gap-8 items-center">
       {sections.map((section) => (
         <li key={section.id}>
           <a
@@ -161,8 +161,29 @@ const StickyNav: React.FC = () => (
           </a>
         </li>
       ))}
+      <li>
+        <a
+          href="/resume.pdf"
+          download
+          className="inline-block px-4 py-2 font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 ml-2 text-base font-roboto"
+        >
+          Download Resume
+        </a>
+      </li>
+      <li>
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-4 py-2 font-semibold rounded-lg bg-fuchsia-600 text-white hover:bg-fuchsia-700 transition-colors shadow border border-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 ml-2 text-base font-roboto"
+        >
+          View Resume
+        </a>
+      </li>
     </ul>
   </nav>
+// ...existing code...
+// ...existing code...
 );
 
 // Tabs for Projects/Ongoing Projects
