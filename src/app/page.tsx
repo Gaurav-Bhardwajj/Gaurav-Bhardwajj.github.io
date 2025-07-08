@@ -164,15 +164,6 @@ const StickyNav: React.FC = () => (
       <li>
         <a
           href="/resume.pdf"
-          download
-          className="inline-block px-4 py-2 font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 ml-2 text-base font-roboto"
-        >
-          Download Resume
-        </a>
-      </li>
-      <li>
-        <a
-          href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block px-4 py-2 font-semibold rounded-lg bg-fuchsia-600 text-white hover:bg-fuchsia-700 transition-colors shadow border border-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 ml-2 text-base font-roboto"
@@ -284,7 +275,8 @@ export default function Home() {
     <div className="relative min-h-screen w-full bg-black p-0 flex flex-col items-center overflow-hidden font-roboto" style={{ fontFamily: 'Roboto, sans-serif' }}>
       <ParticleNetwork />
       <StickyNav />
-      <div className="relative z-10 w-full flex flex-col items-center px-0 sm:px-2 md:px-4 py-4 sm:py-6 font-roboto" style={{ paddingTop: '64px' }}>
+      {/* Add extra top padding for mobile to prevent navbar overlap */}
+      <div className="relative z-10 w-full flex flex-col items-center px-0 sm:px-2 md:px-4 py-4 sm:py-6 font-roboto" style={{ paddingTop: '96px' }}>
         <header className="w-full max-w-6xl mx-auto text-center mb-6 font-['Roboto','sans-serif']">
           <div className="mx-auto flex justify-center">
             <div className="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-full px-8 py-6 sm:px-12 sm:py-8 flex flex-col items-center gap-2 transition-all duration-300 hover:bg-white/20 hover:shadow-blue-400/30 hover:scale-105 group font-['Roboto','sans-serif']">
