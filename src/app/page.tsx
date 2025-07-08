@@ -371,9 +371,9 @@ export default function Home() {
           </CollapsibleSection>
         </div>
         {/* Projects Section (non-collapsible, interactive box) */}
-        <section id="projects" className="w-full max-w-6xl mx-auto mb-6 scroll-mt-24 font-['Roboto','sans-serif']">
-          <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 group transition-transform duration-200 hover:scale-105 font-sans">
-            <h2 className="text-2xl font-bold px-6 pt-6 pb-2 text-white uppercase tracking-wide font-['Roboto','sans-serif'] transition-transform duration-200 group-hover:scale-105" style={{ textTransform: 'none' }}>
+        <section id="projects" className="w-full max-w-6xl mx-auto mb-6 scroll-mt-[120px] font-['Roboto','sans-serif']">
+          <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 font-sans">
+            <h2 className="text-2xl font-bold px-6 pt-6 pb-2 text-white uppercase tracking-wide font-['Roboto','sans-serif']" style={{ textTransform: 'none' }}>
               Projects
             </h2>
             <div className="space-y-6 bg-black/90 rounded-b-2xl shadow p-8 font-['Roboto','sans-serif']">
@@ -382,9 +382,9 @@ export default function Home() {
           </div>
         </section>
         {/* Experience Section (non-collapsible, interactive box) */}
-        <section id="experience" className="w-full max-w-6xl mx-auto mb-6 scroll-mt-24 font-['Roboto','sans-serif']">
-          <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 group transition-transform duration-200 hover:scale-105 font-sans">
-            <h2 className="text-2xl font-bold px-6 pt-6 pb-2 text-white uppercase tracking-wide font-['Roboto','sans-serif'] transition-transform duration-200 group-hover:scale-105" style={{ textTransform: 'none' }}>
+        <section id="experience" className="w-full max-w-6xl mx-auto mb-6 scroll-mt-[120px] font-['Roboto','sans-serif']">
+          <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 font-sans">
+            <h2 className="text-2xl font-bold px-6 pt-6 pb-2 text-white uppercase tracking-wide font-['Roboto','sans-serif']" style={{ textTransform: 'none' }}>
               Experience
             </h2>
             <div className="space-y-6 bg-black/90 rounded-b-2xl shadow p-8 font-['Roboto','sans-serif']">
@@ -402,9 +402,9 @@ export default function Home() {
           </div>
         </section>
         {/* Skills Section (non-collapsible, interactive box) */}
-        <section id="skills" className="w-full max-w-6xl mx-auto mb-6 scroll-mt-24 font-['Roboto','sans-serif']">
-          <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 group transition-transform duration-200 hover:scale-105 font-sans">
-            <h2 className="text-2xl font-bold px-6 pt-6 pb-2 text-white uppercase tracking-wide font-['Roboto','sans-serif'] transition-transform duration-200 group-hover:scale-105" style={{ textTransform: 'none' }}>
+        <section id="skills" className="w-full max-w-6xl mx-auto mb-6 scroll-mt-[120px] font-['Roboto','sans-serif']">
+          <div className="rounded-2xl bg-gradient-to-r from-yellow-400/10 via-fuchsia-500/10 to-cyan-400/10 shadow p-0 mb-6 font-sans">
+            <h2 className="text-2xl font-bold px-6 pt-6 pb-2 text-white uppercase tracking-wide font-['Roboto','sans-serif']" style={{ textTransform: 'none' }}>
               Skills
             </h2>
             <div className="flex flex-wrap gap-3 justify-center bg-black/90 rounded-b-2xl shadow p-8 font-['Roboto','sans-serif']">
